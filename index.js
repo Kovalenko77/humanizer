@@ -122,6 +122,12 @@ const objOfDigit = {
   },
 };
 
+function getAndChangeUsersNumToHumanizeString() {
+  let value = getValue();
+  let stringOfUser = changeNumToString(value);
+  alert(humanizeNum(stringOfUser));
+}
+
 function getValue() {
   const val = document.querySelector('input').value;
   return val;
@@ -206,22 +212,15 @@ function humanizeNum(string) {
       case 1: {
         if (string[string.length - [i + 1]] === '1') {
           break;
+        } else if (string.length === 1 && string[string.length - 1] === '0') {
+          finalString += 'ноль';
         } else {
           obj = objOfDigit[i];
+          finalString += obj[string[string.length - i]] + '';
         }
-        obj = objOfDigit[i];
-        finalString += obj[string[string.length - i]] + '';
         break;
       }
     }
   }
-  return alert(finalString);
+  return finalString;
 }
-
-function getAndChangeUsersNumToHumanizeString() {
-  let value = getValue();
-  let stringOfUser = changeNumToString(value);
-  humanizeNum(stringOfUser);
-}
-
-getAndChangeUsersNumToHumanizeString();
