@@ -49,7 +49,7 @@ const objOfDigit = {
     9: 'девятьсот',
   },
   4: {
-    0: 'тысяч',
+    0: '',
     1: 'одна тысяча',
     2: 'две тысячи',
     3: 'три тысячи',
@@ -186,7 +186,11 @@ function humanizeNum(string) {
       case 4: {
         if (string[string.length - [i + 1]] === '1' && string[string.length - i] !== '0') {
           break;
-        } else if (string[string.length - i] === '0') {
+        } else if (
+          (string[string.length - i] === '0' && string[string.length - i - 1] !== '0') ||
+          string[string.length - i - 2] !== '0'
+        ) {
+          obj = objOfDigit[i];
           finalString += ' ' + obj[string[string.length - i]] + 'тысяч';
         } else {
           obj = objOfDigit[i];
