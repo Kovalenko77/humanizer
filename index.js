@@ -187,8 +187,9 @@ function humanizeNum(string) {
         if (string[string.length - [i + 1]] === '1' && string[string.length - i] !== '0') {
           break;
         } else if (
-          (string[string.length - i] === '0' && string[string.length - i - 1] !== '0') ||
-          string[string.length - i - 2] !== '0'
+          string.length > 4 &&
+          ((string[string.length - i] === '0' && string[string.length - i - 1] !== '0') ||
+          string[string.length - i - 2] !== '0')
         ) {
           obj = objOfDigit[i];
           finalString += ' ' + obj[string[string.length - i]] + 'тысяч';
@@ -204,7 +205,7 @@ function humanizeNum(string) {
         break;
       }
       case 2: {
-        if (string[string.length - i] === '1') {
+        if (string[string.length - i] === '1' && string[string.length - i + 1] > 0) {
           obj = objOfDigit[11];
           finalString += obj[string[string.length - 1]] + ' ';
         } else {
