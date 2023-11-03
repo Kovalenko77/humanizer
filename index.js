@@ -1,4 +1,4 @@
-const objOfDigitEn = {
+const OBJ_OF_dIGIT = {
   0: '',
   1: {
     0: '',
@@ -38,7 +38,7 @@ const objOfDigitEn = {
   },
 };
 
-const ordinals = {
+const ORDINALS = {
   0: ' hundred',
   1: ' thousand',
   2: ' million',
@@ -80,7 +80,7 @@ function humanizeOnePiece(string, obj) {
       }
       case 0: {
         if (string[placeNum] > '0') {
-          finalArr.push(obj[1][string[placeNum]] + ordinals[0]);
+          finalArr.push(obj[1][string[placeNum]] + ORDINALS[0]);
         } else {
           finalArr.push(obj[1][string[placeNum]]);
         }
@@ -89,7 +89,7 @@ function humanizeOnePiece(string, obj) {
     }
   }
   let result = finalArr.reverse().join(' ');
-  return result; // result = "eight hundred twenty one";
+  return result; 
 }
 
 function humanizer(value) {
@@ -97,9 +97,9 @@ function humanizer(value) {
   let result = [];
   for (let i = 0; i < arrOfStr.length; i++) {
     if (i > 0) {
-      result.push(humanizeOnePiece(arrOfStr[i], objOfDigitEn) + ordinals[i]);
+      result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_dIGIT) + ORDINALS[i]);
     } else {
-      result.push(humanizeOnePiece(arrOfStr[i], objOfDigitEn));
+      result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_dIGIT));
     }
   }
   let resultString = result.reverse().join(' ');
@@ -115,15 +115,3 @@ function humanizeValue(inputId) {
   let humanizedString = humanizer(value);
   showResultingString(inputId + '-output', humanizedString);
 }
-
-// 1. Get and humanize value from the input; *'13456'* => 'thirteen thousand four hundred fifty six';
-//     1.1. Get value from input; '13456';
-//     1.2. Transform value from string to arr of strings;  '13456' => ['456','13'];
-//     1.3. Transfom each element from array of strings to new array of phrases; ['456','13'] => ['four hundred fifty six', 'thirteen thousand'];
-//     1.4. Transform array of phrases to resulting string; ['four hundred fifty six', 'thirteen thousand'] => 'thirteen thousand four hundred fifty six';
-// 2. Show the resulting string below the input.
-
-// 1. Get the value from the input; *'13456'*
-// 2. Change type of input value from string to array of strings and reverse it: '13456' => ['456','13']
-// 3. Humanize value : ['456','13'] => 'thirteen thousand four hundred fifty six'
-// 4. Show the result below the input.
