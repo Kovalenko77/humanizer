@@ -53,7 +53,10 @@ function getValue(id) {
 function getArray(str) {
   const result = [];
   for (let i = str.length; i > 0; i = i - 3) {
-    result.push(`${!!str[i - 3] ? str[i - 3] : ''}${!!str[i - 2] ? str[i - 2] : ''}${!!str[i - 1] ? str[i - 1] : ''}`);
+    const firstDigitOfThree = !!str[i - 3] ? str[i - 3] : '';
+    const secondDigitOfThree = !!str[i - 2] ? str[i - 2] : '';
+    const thirdDigitOfThree = !!str[i - 1] ? str[i - 1] : '';
+    result.push(`${firstDigitOfThree}${secondDigitOfThree}${thirdDigitOfThree}`);
   }
   return result;
 }
@@ -78,7 +81,7 @@ function humanizeOnePiece(stringOfNum, obj) {
           finalArr.push(obj[2][string[placeNum]]);
         }
         break;
-      } 
+      }
       case 0: {
         const hundreds = string[placeNum] > '0' ? HUNDREDS : '';
         finalArr.push(obj[1][string[placeNum]] + hundreds);
