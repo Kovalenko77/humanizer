@@ -93,14 +93,14 @@ function humanizeOnePiece(stringOfNum, obj) {
 function humanize(value) {
   const arrOfStr = getArray(value);
   const result = [];
-  for (let i = 0; i < arrOfStr.length; i++) {
+  for (let i = arrOfStr.length - 1; i >= 0; i--) {
     if (i > 0) {
-      result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_dIGIT) + ORDINALS[i]);
+      result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT) + ORDINALS[i]);
     } else {
-      result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_dIGIT));
+      result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT));
     }
   }
-  return result.reverse().join(' ');
+  return result;
 }
 
 function showResultingString(id, string) {
