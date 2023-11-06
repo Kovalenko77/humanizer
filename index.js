@@ -1,4 +1,4 @@
-const OBJ_OF_dIGIT = {
+const OBJ_OF_DIGIT = {
   0: '',
   1: {
     0: '',
@@ -45,21 +45,20 @@ const ORDINALS = {
 };
 
 function getValue(id) {
-  const val = document.getElementById(id).value;
-  return val;
+  return document.getElementById(id).value;
 }
 
 function getArray(str) {
-  let result = [];
+  const result = [];
   for (let i = str.length; i > 0; i = i - 3) {
     result.push(`${!!str[i - 3] ? str[i - 3] : ''}${!!str[i - 2] ? str[i - 2] : ''}${!!str[i - 1] ? str[i - 1] : ''}`);
   }
   return result;
 }
 
-function humanizeOnePiece(string, obj) {
-  let finalArr = [];
-  string = string.padStart(3, 0);
+function humanizeOnePiece(stringOfNum, obj) {
+  const finalArr = [];
+  string = stringOfNum.padStart(3, 0);
   for (let placeNum = string.length - 1; placeNum >= 0; placeNum--) {
     switch (placeNum) {
       case 2: {
@@ -88,13 +87,12 @@ function humanizeOnePiece(string, obj) {
       }
     }
   }
-  let result = finalArr.reverse().join(' ');
-  return result; 
+  return finalArr.reverse().join(' ');
 }
 
-function humanizer(value) {
-  let arrOfStr = getArray(value);
-  let result = [];
+function humanize(value) {
+  const arrOfStr = getArray(value);
+  const result = [];
   for (let i = 0; i < arrOfStr.length; i++) {
     if (i > 0) {
       result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_dIGIT) + ORDINALS[i]);
@@ -102,8 +100,7 @@ function humanizer(value) {
       result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_dIGIT));
     }
   }
-  let resultString = result.reverse().join(' ');
-  return resultString;
+  return result.reverse().join(' ');
 }
 
 function showResultingString(id, string) {
@@ -112,6 +109,6 @@ function showResultingString(id, string) {
 
 function humanizeValue(inputId) {
   let value = getValue(inputId);
-  let humanizedString = humanizer(value);
+  let humanizedString = humanize(value);
   showResultingString(inputId + '-output', humanizedString);
 }
