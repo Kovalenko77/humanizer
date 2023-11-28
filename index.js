@@ -1,5 +1,5 @@
 const OBJ_OF_DIGIT = {
-  0: '',
+  0: 'zero',
   1: {
     0: '',
     1: 'one',
@@ -44,7 +44,7 @@ const ORDINALS = {
   2: ' million',
 };
 
-const HUNDREDS = ' hundreds';
+const HUNDREDS = ' hundred';
 
 function getValue(id) {
   return document.getElementById(id).value;
@@ -89,14 +89,25 @@ function humanizeOnePiece(stringOfNum, obj) {
       }
     }
   }
-  return finalArr.reverse().join(' ');
+  return finalArr
+    .reverse()
+    .filter((num) => num !== '')
+    .join(' ');
 }
 
 function humanize(value) {
+  if (value === '0') {
+    return OBJ_OF_DIGIT[0];
+  }
   const arrOfStr = getArray(value);
-  const result = []; //['567','77']
+  const result = [];
   for (let i = arrOfStr.length - 1; i >= 0; i--) {
-    result.push(humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT) + ORDINALS[i]);
+    const humanizedPieceOfValue = humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT);
+    console.log('humanizedPiceOfValue', humanizedPieceOfValue);
+    if (humanizedPieceOfValue !== '') {
+      result.push(humanizedPieceOfValue + ORDINALS[i]);
+      console.log('result', result);
+    }
   }
   return result.join(' ');
 }
