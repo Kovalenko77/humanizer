@@ -63,7 +63,7 @@ function getArray(str) {
 
 function humanizeOnePiece(stringOfNum, obj) {
   const finalArr = [];
-  string = stringOfNum.padStart(3, 0);
+  const string = stringOfNum.padStart(3, 0);
   for (let placeNum = string.length - 1; placeNum >= 0; placeNum--) {
     switch (placeNum) {
       case 2: {
@@ -103,10 +103,8 @@ function humanize(value) {
   const result = [];
   for (let i = arrOfStr.length - 1; i >= 0; i--) {
     const humanizedPieceOfValue = humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT);
-    console.log('humanizedPiceOfValue', humanizedPieceOfValue);
     if (humanizedPieceOfValue !== '') {
       result.push(humanizedPieceOfValue + ORDINALS[i]);
-      console.log('result', result);
     }
   }
   return result.join(' ');
@@ -117,7 +115,7 @@ function showResultingString(id, string) {
 }
 
 function humanizeValue(inputId) {
-  let value = getValue(inputId);
-  let humanizedString = humanize(value);
+  const value = getValue(inputId);
+  const humanizedString = humanize(value);
   showResultingString(inputId + '-output', humanizedString);
 }
