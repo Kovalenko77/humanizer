@@ -46,9 +46,9 @@ const ORDINALS = {
 
 const HUNDREDS = ' hundred';
 
-function getValue(id) {
-  return document.getElementById(id).value;
-}
+const inputId = 'users-value';
+const inputEl = document.getElementById(inputId);
+inputEl.addEventListener('input', humanizeValue);
 
 function getArray(str) {
   const result = [];
@@ -114,8 +114,8 @@ function showResultingString(id, string) {
   document.getElementById(id).textContent = string;
 }
 
-function humanizeValue(inputId) {
-  const value = getValue(inputId);
+function humanizeValue(event) {
+  const value = event.target.value;
   const humanizedString = humanize(value);
   showResultingString(inputId + '-output', humanizedString);
 }
