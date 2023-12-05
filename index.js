@@ -40,8 +40,8 @@ const OBJ_OF_DIGIT = {
 
 const ORDINALS = {
   0: '',
-  1: ' thousand',
-  2: ' million',
+  1: 'thousand',
+  2: 'million',
 };
 
 const HUNDREDS = ' hundred';
@@ -104,7 +104,8 @@ function humanize(value) {
   for (let i = arrOfStr.length - 1; i >= 0; i--) {
     const humanizedPieceOfValue = humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT);
     if (humanizedPieceOfValue !== '') {
-      result.push(humanizedPieceOfValue + ORDINALS[i]);
+      result.push(humanizedPieceOfValue);
+      result.push(ORDINALS[i]);
     }
   }
   return result.join(' ');
