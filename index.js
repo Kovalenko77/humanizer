@@ -53,10 +53,12 @@ inputEl.addEventListener('input', humanizeValue);
 function getArray(str) {
   const result = [];
   for (let i = str.length; i > 0; i = i - 3) {
-    const firstDigitOfThree = !!str[i - 3] ? str[i - 3] : '';
-    const secondDigitOfThree = !!str[i - 2] ? str[i - 2] : '';
-    const thirdDigitOfThree = !!str[i - 1] ? str[i - 1] : '';
-    result.push(`${firstDigitOfThree}${secondDigitOfThree}${thirdDigitOfThree}`);
+    result.push(
+      [3, 2, 1].reduce(function (acc, n) {
+        acc += str[i - n] || '';
+        return acc;
+      }, '')
+    );
   }
   return result;
 }
