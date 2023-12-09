@@ -44,7 +44,7 @@ const ORDINALS = {
   2: 'million',
 };
 
-const HUNDREDS = ' hundred';
+const HUNDREDS = 'hundred';
 
 const inputId = 'users-value';
 const inputEl = document.getElementById(inputId);
@@ -85,8 +85,11 @@ function humanizeOnePiece(stringOfNum, obj) {
         break;
       }
       case 0: {
-        const hundreds = string[placeNum] > '0' ? HUNDREDS : '';
-        finalArr.push(obj[1][string[placeNum]] + hundreds);
+        if (string[placeNum] > '0') {
+          finalArr.push([obj[1][string[placeNum]], HUNDREDS].join(' '));
+        } else {
+          finalArr.push(obj[1][string[placeNum]]);
+        }
         break;
       }
     }
@@ -106,8 +109,7 @@ function humanize(value) {
   for (let i = arrOfStr.length - 1; i >= 0; i--) {
     const humanizedPieceOfValue = humanizeOnePiece(arrOfStr[i], OBJ_OF_DIGIT);
     if (humanizedPieceOfValue !== '') {
-      result.push(humanizedPieceOfValue);
-      result.push(ORDINALS[i]);
+      result.push([humanizedPieceOfValue, ORDINALS[i]].join(' '));
     }
   }
   return result.join(' ');
